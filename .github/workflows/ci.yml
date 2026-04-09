@@ -11,7 +11,8 @@ permissions:
 
 env:
   AWS_REGION: ap-southeast-2
-  ECR_REPOSITORY: tennis-pro
+  APP_REPOSITORY: tennis-pro
+  FLYWAY_REPOSITORY: tennis-pro-flyway
 
 jobs:
   build-and-push:
@@ -46,20 +47,22 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
-      - name: Build Docker image
+      - name: Build and push app image
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          IMAGE_URI=$REGISTRY/${{ env.ECR_REPOSITORY }}
-          docker build -t $IMAGE_URI:$IMAGE_TAG .
-          docker tag $IMAGE_URI:$IMAGE_TAG $IMAGE_URI:latest
+          APP_URI=$REGISTRY/${{ env.APP_REPOSITORY }}
+          docker build -t $APP_URI:$IMAGE_TAG -t $APP_URI:latest .
+          docker push $APP_URI:$IMAGE_TAG
+          docker push $APP_URI:latest
 
-      - name: Push Docker image
+      - name: Build and push flyway image
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          IMAGE_URI=$REGISTRY/${{ env.ECR_REPOSITORY }}
-          docker push $IMAGE_URI:$IMAGE_TAG
-          docker push $IMAGE_URI:latest
+          FLYWAY_URI=$REGISTRY/${{ env.FLYWAY_REPOSITORY }}
+          docker build --pull -f Dockerfile.flyway -t $FLYWAY_URI:$IMAGE_TAG -t $FLYWAY_URI:latest .
+          docker push $FLYWAY_URI:$IMAGE_TAG
+          docker push $FLYWAY_URI:latest

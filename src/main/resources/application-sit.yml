@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: database-1.c58aguuq89dc.ap-southeast-2.rds.amazonaws.com
+    username: pgdbadmin
+    password: LDzs20010828.
+
+  flyway:
+    baseline-on-migrate: false  # safer for prod
+    validate-on-migrate: true
