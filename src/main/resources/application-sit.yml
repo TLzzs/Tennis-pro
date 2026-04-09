@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: database-1.c58aguuq89dc.ap-southeast-2.rds.amazonaws.com
+    url: jdbc:postgresql://database-1.c58aguuq89dc.ap-southeast-2.rds.amazonaws.com:5432/postgres?currentSchema=public
     username: pgdbadmin
     password: LDzs20010828.
 
