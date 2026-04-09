@@ -1,6 +1,6 @@
 package com.ludistudy.tennispro.Controller;
 
-import com.ludistudy.tennispro.Dto.User;
+import com.ludistudy.tennispro.Entity.User;
 import com.ludistudy.tennispro.Service.UserService;
 
 import org.springframework.web.bind.annotation.GetMapping;

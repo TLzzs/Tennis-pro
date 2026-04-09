@@ -1,7 +1,7 @@
 package com.ludistudy.tennispro.Repository;
 
 
-import com.ludistudy.tennispro.Dto.User;
+import com.ludistudy.tennispro.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
