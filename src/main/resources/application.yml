@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: Tennis-Pro
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+  flyway:
+    enabled: false
+    locations: classpath:db/migration

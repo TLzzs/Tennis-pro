@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://prod-host:5432/prod_db
+    username: prod_user
+    password: prod_pass
+
+  flyway:
+    baseline-on-migrate: false  # safer for prod
+    validate-on-migrate: true
