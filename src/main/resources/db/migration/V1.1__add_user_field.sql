@@ -1,0 +1,4 @@
+ALTER TABLE users
+    ADD COLUMN age INTEGER NOT NULL,
+    ADD COLUMN utr_score NUMERIC(4,2),
+    ADD COLUMN experience INTEGER NOT NULL;
